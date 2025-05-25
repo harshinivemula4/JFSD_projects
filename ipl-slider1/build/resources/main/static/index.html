@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Image Slider</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .message {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .slider {
+            position: relative;
+            width: 90%;
+            max-width: 850px;
+            height: 550px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+            font-size: 26px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 12px 0;
+            text-shadow: 0 0 8px #00ffff;
+        }
+
+        .team-msg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            background: rgba(0, 191, 255, 0.7);
+            padding: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+        }
+
+        .nav-buttons button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 10px;
+            color: #00ffff;
+            background-color: transparent;
+            border: 2px solid #00ffff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #00ffff;
+            color: #000;
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        @media (max-width: 768px) {
+            .caption {
+                font-size: 20px;
+            }
+
+            .team-msg {
+                font-size: 16px;
+            }
+
+            .message {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="message">Welcome to the IPL Image Slider!</div>
+
+<div class="slider">
+    <div class="slide active">
+        <img src="images/ipl1.jpg" alt="CSK">
+        <div class="caption">Chennai Super Kings</div>
+        <div class="team-msg">Led by MS Dhoni, CSK is known for consistency and strong comebacks!</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl2.jpg" alt="RCB">
+        <div class="caption">Royal Challengers Bangalore</div>
+        <div class="team-msg">RCB boasts power hitters like Kohli and Maxwell. Ee Sala Cup Namde!</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl3.jpg" alt="SRH">
+        <div class="caption">Sun Risers Hyderabad</div>
+        <div class="team-msg">Famed for strong bowling attacks, SRH is always a tough opponent.</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl4.jpg" alt="GT">
+        <div class="caption">Gujarat Titans</div>
+        <div class="team-msg">The new franchise made an impact by winning their debut season!</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl5.jpg" alt="MI">
+        <div class="caption">Mumbai Indians</div>
+        <div class="team-msg">With 5 titles, MI is one of the most successful IPL franchises.</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl6.jpg" alt="PBKS">
+        <div class="caption">Punjab Kings</div>
+        <div class="team-msg">PBKS is known for explosive batting and passionate fans.</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl7.jpg" alt="LSG">
+        <div class="caption">Lucknow Super Giants</div>
+        <div class="team-msg">LSG quickly became competitive with a solid all-round squad.</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl8.jpg" alt="RR">
+        <div class="caption">Rajasthan Royals</div>
+        <div class="team-msg">The first IPL champions, known for discovering young talent.</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl9.jpg" alt="DC">
+        <div class="caption">Delhi Capitals</div>
+        <div class="team-msg">DC has grown into a consistent performer with a young core.</div>
+    </div>
+    <div class="slide">
+        <img src="images/ipl10.jpg" alt="KKR">
+        <div class="caption">Kolkata Knight Riders</div>
+        <div class="team-msg">With a never-say-die attitude, KKR always delivers drama and thrill.</div>
+    </div>
+</div>
+
+<div class="nav-buttons">
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    function showSlide(newIndex) {
+        slides[index].classList.remove('active');
+        index = (newIndex + slides.length) % slides.length;
+        slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        showSlide(index + 1);
+    }
+
+    function prevSlide() {
+        showSlide(index - 1);
+    }
+
+    setInterval(nextSlide, 3000); // Auto slide every 3 seconds
+</script>
+
+</body>
+</html>
