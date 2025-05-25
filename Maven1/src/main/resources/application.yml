@@ -1,0 +1,8 @@
+resilience4j:
+  retry:
+    instances:
+      apiRetry:
+        maxAttempts: 3  # Changed from maxRetryAttempts
+        waitDuration: 500ms
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
